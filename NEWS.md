@@ -1,4 +1,19 @@
 
+# vdiffr 0.1.1
+
+* `expect_doppelganger()` no longer throws an error when FreeType is
+  too old. Instead, the test is skipped. This ensures that R CMD check
+  passes on those platforms (e.g., CRAN's Solaris test server).
+
+* Depends on gdtools 0.1.2 or later as this version fixes a crash on
+  Linux platforms.
+
+* `widget_toggle()`, `widget_slide()` and `widget_diff()` now take
+  plots as arguments. This makes it easy to embed a vdiffr widget in
+  R Markdown documents. The underscored versions take HTML sources as
+  argument (paths to SVG files or inline SVGs).
+
+
 # vdiffr 0.1.0
 
 * Generated SVGs are now reproducible across platforms thanks to

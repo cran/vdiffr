@@ -28,16 +28,26 @@
 #'   standard families and Symbola font for symbols.
 #' @export
 #' @examples
-#' disp_hist_base <- function() hist(mtcars$disp)
-#' expect_doppelganger("disp-histogram-base", disp_hist_base)
+#' ver <- gdtools::version_freetype()
 #'
-#' if (requireNamespace("ggplot2", quietly = TRUE)) {
+#' if (ver >= "2.6.0") {
+#'   disp_hist_base <- function() hist(mtcars$disp)
+#'   expect_doppelganger("disp-histogram-base", disp_hist_base)
+#' }
+#'
+#' if (ver >= "2.6.0" && requireNamespace("ggplot2", quietly = TRUE)) {
 #'   library("ggplot2")
 #'   disp_hist_ggplot <- ggplot(mtcars, aes(disp)) + geom_histogram()
 #'   expect_doppelganger("disp-histogram-ggplot", disp_hist_ggplot)
 #' }
 expect_doppelganger <- function(title, fig, path = NULL, ...,
                                 user_fonts = NULL) {
+  if (old_freetype()) {
+    ver <- gdtools::version_freetype()
+    msg <- paste("vdiffr requires FreeType >= 2.6.0. Current version:", ver)
+    testthat::skip(msg)
+  }
+
   fig_name <- str_standardise(title)
   testcase <- make_testcase_file(fig_name)
   write_svg(fig, testcase, title, user_fonts)
