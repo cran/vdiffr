@@ -1,6 +1,6 @@
 Package: vdiffr
 Title: Visual Regression Testing and Graphical Diffing
-Version: 0.2.1
+Version: 0.2.2
 Authors@R: c(
     person("Lionel", "Henry", , "lionel@rstudio.com", c("cre", "aut")),
     person("RStudio", role = "cph"),
@@ -26,7 +26,7 @@ Suggests: ggplot2, roxygen2, rstudioapi, yaml
 LinkingTo: Rcpp
 RoxygenNote: 6.0.1
 NeedsCompilation: yes
-Packaged: 2017-10-09 22:07:23 UTC; lionel
+Packaged: 2018-02-01 05:47:04 UTC; lionel
 Author: Lionel Henry [cre, aut],
   RStudio [cph],
   Carl Sutherland [aut] (jg-imagediff library),
@@ -37,4 +37,4 @@ Author: Lionel Henry [cre, aut],
     inst/htmlwidgets/lib/jquery-authors.txt)
 Maintainer: Lionel Henry <lionel@rstudio.com>
 Repository: CRAN
-Date/Publication: 2017-10-09 22:20:17 UTC
+Date/Publication: 2018-02-01 05:54:47 UTC

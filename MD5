@@ -1,7 +1,7 @@
-18142d1efbd59f76fb5e2d1e371fe9be *DESCRIPTION
+000edc62d49f5aaf12afa3972642e72f *DESCRIPTION
 0d8e88328c6642c6ed8e27f9747482ec *LICENSE
 bf49632aad123f65f0c099214bcdab8b *NAMESPACE
-9db00a292cf2d8ae785da7cf66221b17 *NEWS.md
+a03226797843341d4b189d0bbdc3b0c3 *NEWS.md
 34ff0c5216573e3165ed2533b175dc0f *R/RcppExports.R
 0e967c07a3f855c1c8a5aceee8d86500 *R/cases-ui.R
 d37592a6f4705723e40bfed9343537f7 *R/cases.R
@@ -10,7 +10,7 @@ cf8af5a92b8ea4660b739d9f676fe2f3 *R/shiny-server.R
 b5ef75bca0c9cd9e61111cbc86855564 *R/shiny-widgets.R
 40fedbcc75c892b57a65715bc96e15f5 *R/svg.R
 31337dd94edb6f363529792a522fb34d *R/testthat-reporter.R
-ac8e9d3b71c16a7e1a91f17eb378040e *R/testthat-ui.R
+a8318c5c0426e53cd612a511df07e014 *R/testthat-ui.R
 97c75935154f7068f1ff286af9a7c1cc *R/utils.R
 4aeb35487cae3bc6e606fb2e1ad81da3 *R/vdiffr.R
 69eea00ea1d91d1b67ca4110cb23c3c5 *R/widgets.R
@@ -51,12 +51,12 @@ e88d797abc8f198ca63d0d68327d6187 *tests/testthat/mock-pkg-error/tests/testthat.R
 1d89d4542e140c71cebb2a577825686d *tests/testthat/mock-pkg-skip-newer/tests/figs/deps.txt
 b473c9e07bfe39d8a5650d4351d8ad36 *tests/testthat/mock-pkg-skip-newer/tests/figs/failing-test/failing.svg
 545a30561a3deb2bf98a758acb2c84a5 *tests/testthat/mock-pkg-skip-newer/tests/testthat.R
-b9c0f7421d817afa078e65807ea92694 *tests/testthat/mock-pkg-skip-newer/tests/testthat/test-skip-newer.R
+9aaf2b5826f6045011e2c3442e905426 *tests/testthat/mock-pkg-skip-newer/tests/testthat/test-skip-newer.R
 733147ad63bab5bfe9cfa34f9989ebcb *tests/testthat/mock-pkg-skip-older/DESCRIPTION
 21a2b9ed71ee8586c04d101786ece540 *tests/testthat/mock-pkg-skip-older/tests/figs/deps.txt
 b473c9e07bfe39d8a5650d4351d8ad36 *tests/testthat/mock-pkg-skip-older/tests/figs/failing-test/failing.svg
 545a30561a3deb2bf98a758acb2c84a5 *tests/testthat/mock-pkg-skip-older/tests/testthat.R
-b9c0f7421d817afa078e65807ea92694 *tests/testthat/mock-pkg-skip-older/tests/testthat/test-skip-newer.R
+9aaf2b5826f6045011e2c3442e905426 *tests/testthat/mock-pkg-skip-older/tests/testthat/test-skip-newer.R
 733147ad63bab5bfe9cfa34f9989ebcb *tests/testthat/mock-pkg/DESCRIPTION
 aff2307aa8f9b93d70d5e1b13fef85d5 *tests/testthat/mock-pkg/tests/figs/base-doppelganger-with-symbol.svg
 34c48a54ebd331779e6f5fd9f4bb0688 *tests/testthat/mock-pkg/tests/figs/deps.txt
