@@ -1,7 +1,7 @@
-000edc62d49f5aaf12afa3972642e72f *DESCRIPTION
+7e2b98f468f034e5a1568cce2c39af6e *DESCRIPTION
 0d8e88328c6642c6ed8e27f9747482ec *LICENSE
-bf49632aad123f65f0c099214bcdab8b *NAMESPACE
-a03226797843341d4b189d0bbdc3b0c3 *NEWS.md
+c64468ff3acc78581fe1a8d5b855055e *NAMESPACE
+dfa0d8ee0e094849e0df3540a3ebfe21 *NEWS.md
 34ff0c5216573e3165ed2533b175dc0f *R/RcppExports.R
 0e967c07a3f855c1c8a5aceee8d86500 *R/cases-ui.R
 d37592a6f4705723e40bfed9343537f7 *R/cases.R
@@ -9,8 +9,8 @@ cf8af5a92b8ea4660b739d9f676fe2f3 *R/shiny-server.R
 723eceffa120557d5a9d2fe913838126 *R/shiny-ui.R
 b5ef75bca0c9cd9e61111cbc86855564 *R/shiny-widgets.R
 40fedbcc75c892b57a65715bc96e15f5 *R/svg.R
-31337dd94edb6f363529792a522fb34d *R/testthat-reporter.R
-a8318c5c0426e53cd612a511df07e014 *R/testthat-ui.R
+56045c40e9d608cb8164e42ff2ade605 *R/testthat-reporter.R
+aeaceb0b952d8d5baa9e74c46efbdda4 *R/testthat-ui.R
 97c75935154f7068f1ff286af9a7c1cc *R/utils.R
 4aeb35487cae3bc6e606fb2e1ad81da3 *R/vdiffr.R
 69eea00ea1d91d1b67ca4110cb23c3c5 *R/widgets.R
@@ -31,6 +31,7 @@ febf2cc1129ed603a9adfc35b17115de *inst/rstudio/addins.dcf
 5b9bf9e4a421acbcdf1ea3e99dd46dc1 *man/collect_cases.Rd
 cfc2e42f9b43dc046fc70979d5a92857 *man/expect_doppelganger.Rd
 a01d4fc0e91cb09482d6d07decc09508 *man/htmlwidgets.Rd
+451fe61cf296a002234335f3610c8ab4 *man/last_collection_error.Rd
 96eb77bced2ce3eeb2a26289cc5a0ae4 *man/manage_cases.Rd
 e2cbc8312ead8c87e845ea3a74cbc224 *man/shinybindings.Rd
 c2b9c63167e99329198ec814346640e0 *man/validate_cases.Rd
@@ -40,10 +41,9 @@ c2b9c63167e99329198ec814346640e0 *man/validate_cases.Rd
 ab5f0fad84d81e2ee7c3d5e8710bffc5 *src/algo-it.h
 4c6966bd5ef8bda7dbfb241ea8ce4d41 *src/compare.cpp
 87ed2f7ed207fd7f5ce2bb1ac70253a1 *tests/mock.Rout.fail
-16512bc36e1e9ab788cb51b03cc2f481 *tests/testthat.R
+0a2c213a5026c23aeb9332975a98af45 *tests/testthat.R
 de674c72d7d4669eaa6399ddddd882a6 *tests/testthat/dummy-fonts.conf
 a2ca01af9a3c47853667e3e729c05214 *tests/testthat/helper-fontconfig.R
-aa6e7d6bfed44a06c76a08842b1ed109 *tests/testthat/helper-mock.R
 cef0de4eb1b418f5d44d581f37d717d6 *tests/testthat/mock-pkg-error/DESCRIPTION
 e88d797abc8f198ca63d0d68327d6187 *tests/testthat/mock-pkg-error/tests/testthat.R
 6eabc2e62a9de4adf3befbb2ff426f75 *tests/testthat/mock-pkg-error/tests/testthat/test-error.R
@@ -59,7 +59,7 @@ b473c9e07bfe39d8a5650d4351d8ad36 *tests/testthat/mock-pkg-skip-older/tests/figs/
 9aaf2b5826f6045011e2c3442e905426 *tests/testthat/mock-pkg-skip-older/tests/testthat/test-skip-newer.R
 733147ad63bab5bfe9cfa34f9989ebcb *tests/testthat/mock-pkg/DESCRIPTION
 aff2307aa8f9b93d70d5e1b13fef85d5 *tests/testthat/mock-pkg/tests/figs/base-doppelganger-with-symbol.svg
-34c48a54ebd331779e6f5fd9f4bb0688 *tests/testthat/mock-pkg/tests/figs/deps.txt
+3133acb24a8331e60a82225a2455a301 *tests/testthat/mock-pkg/tests/figs/deps.txt
 8a8d678f27cb6e1256ef2a7bb068aa4a *tests/testthat/mock-pkg/tests/figs/ggplot/some-other-title.svg
 e3d908558245fdf4f888d1dc40af5715 *tests/testthat/mock-pkg/tests/figs/ggplot/some-title.svg
 c0cd9e0ff65f10006edcf30c2aa93bce *tests/testthat/mock-pkg/tests/figs/myplot.svg
@@ -73,6 +73,8 @@ c0cd9e0ff65f10006edcf30c2aa93bce *tests/testthat/mock-pkg/tests/figs/myplot.svg
 289c7906685f3146a1c99017a91cf51e *tests/testthat/mock-pkg/tests/testthat/test-ggplot.R
 3d8b0a989f161c98171f1e1a0992eac0 *tests/testthat/mock-pkg/tests/testthat/test-new.R
 8187bde4220a175938af0d414bf0dc8c *tests/testthat/mock-pkg/tests/testthat/test-passed.R
+00de3b81f532c7eb29b817d49704a3c9 *tests/testthat/setup-aaa.R
+fe79c97a67f6393fdae723f93ddc2a6b *tests/testthat/setup-mock.R
 26062c20f69a6d925bb23cc2d35e95e4 *tests/testthat/test-cases.R
 f3c3d8464a1b53b12d5c3e8b8827de28 *tests/testthat/test-compare.R
 67f292c5a726bffba0db4c0b70da1402 *tests/testthat/test-deps.R
