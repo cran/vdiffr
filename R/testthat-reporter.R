@@ -3,7 +3,7 @@ casesCollecter <-
   R6::R6Class("casesCollecter",
     public = list(
       initialize = function(pkg_path) {
-        default_deps <- c("vdiffr", "svglite")
+        default_deps <- chr()
         private$.cases <- cases(list(), pkg_path, default_deps)
       },
 
@@ -62,7 +62,6 @@ vdiffrReporter <-
   R6::R6Class("vdiffrReporter", inherit = testthat::Reporter,
     public = list(
       failure = NULL,
-      verbose_cases = list(),
       pkg_path = NULL,
 
       initialize = function(pkg_path) {
@@ -78,13 +77,10 @@ vdiffrReporter <-
         if (expectation_error(result)) {
           self$failure <- result
         }
-        if (is_verbose(result)) {
-          self$verbose_cases <- c(self$verbose_cases, list(case))
-        }
       },
 
       end_reporter = function() {
-        meow()
+        cat_line()
 
         if (!is.null(self$failure)) {
           last_error$last <- self$failure
@@ -95,27 +91,9 @@ vdiffrReporter <-
              You can inspect this error with `vdiffr::last_collection_error()`"
           ))
         }
-        if (length(self$verbose_cases)) {
-          meow(
-            glue(
-              "====================
-               vdiffr failing cases
-               ===================="
-            ),
-            map(self$verbose_cases, svg_files_lines, self$pkg_path),
-            (
-              "===================="
-            )
-          )
-        }
       }
     )
   )
-
-is_verbose <- function(x) {
-  case <- attr(x, "vdiffr_case")
-  !is_null(case) && case$verbose
-}
 
 expectation_type <- function(exp) {
   stopifnot(inherits(exp, "expectation"))

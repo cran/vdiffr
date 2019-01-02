@@ -20,7 +20,10 @@ sidebarPanel <- function() {
     shiny::br(),
     shiny::uiOutput("case_controls"),
     shiny::actionButton("case_validation_button", "Validate this"),
-    shiny::uiOutput("status")
+    shiny::uiOutput("status"),
+    shiny::uiOutput("diff_text_controls"),
+    shiny::br(),
+    shiny::actionButton("quit_button", "Quit")
   )
 }
 
@@ -29,7 +32,8 @@ diffPanel <- function() {
     shiny::tabsetPanel(id = "active_tab",
       shiny::tabPanel("Toggle", toggleOutput("toggle"), value = "toggle"),
       shiny::tabPanel("Slide", slideOutput("slide"), value = "slide"),
-      shiny::tabPanel("Diff", diffOutput("diff"), value = "diff")
+      shiny::tabPanel("Diff", diffOutput("diff"), value = "diff"),
+      shiny::tabPanel("Textual Diff", shiny::htmlOutput("diff_text"), value = "diff_text")
     )
   )
 }

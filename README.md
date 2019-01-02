@@ -1,12 +1,16 @@
 
 # vdiffr
 
-[![Travis-CI Build Status](https://travis-ci.org/lionel-/vdiffr.svg?branch=master)](https://travis-ci.org/lionel-/vdiffr)
-[![Build status](https://ci.appveyor.com/api/projects/status/github/lionel-/vdiffr?branch=master)](https://ci.appveyor.com/project/lionel-/vdiffr)
+[![Travis Build Status](https://travis-ci.org/r-lib/vdiffr.svg?branch=master)](https://travis-ci.org/r-lib/vdiffr)
+[![AppVeyor Build status](https://ci.appveyor.com/api/projects/status/github/r-lib/vdiffr?branch=master&svg=true)](https://ci.appveyor.com/project/r-lib/vdiffr)
 
 vdiffr is an extension to the package testthat that makes it easy to
 test for visual regressions. It provides a Shiny app to manage failed
 tests and visually compare a graphic to its expected output.
+
+**Important:** The CRAN version no longer works properly. Please use
+the development version which removes the dependency on the system
+FreeType library.
 
 
 ## Installation
@@ -14,8 +18,8 @@ tests and visually compare a graphic to its expected output.
 Get the development version from github with:
 
 ```{r}
-# install.packages("devtools")
-devtools::install_github("lionel-/vdiffr")
+# install.packages("remotes")
+remotes::install_github("r-lib/vdiffr")
 ```
 
 or the last CRAN release with:
@@ -24,14 +28,21 @@ or the last CRAN release with:
 install.packages("vdiffr")
 ```
 
-vdiffr requires FreeType greater than 2.6.0. It is automatically
-installed on Windows along with gdtools and comes with X11 on
-macOS. If you run an old Linux distribution, it is possible you will
-have to update the relevant package. See the section on Travis-CI
-below for some indications.
-
 
 ## How to use vdiffr
+
+Getting started with vdiffr is a three step process:
+
+1) Add expectations to by including `expect_doppelganger()` in your test files.
+
+1) Run `manage_cases()` to generate the plots which vdiffr will test against in
+the future. This will launch a shiny gadget which will ask you to confirm
+that each plot is correct.
+
+1) Run `devtools::test()` to execute the tests as normal.
+
+When a figure doesn't matched the saved version, vdiffr signals a failure when it is run interactively, or when it is run on Travis or Appveyor. Mismatches do not cause R CMD check to fail on CRAN machines. See the testing versus monitoring section below.
+
 
 ### Adding expectations
 
@@ -72,13 +83,6 @@ assigned the minimalistic theme `theme_test()` (unless they already
 have been assigned a theme).
 
 
-### Running tests
-
-You can run the tests the usual way, for example with
-`devtools::test()`. New cases for which you just wrote an expectation
-will be skipped. Failed tests will show as an error.
-
-
 ### Managing the tests
 
 When you have added new test cases or detected regressions, you can
@@ -114,12 +118,36 @@ can also keep track of how your plots change as you tweak their layout
 and add features by checking the history on Github.
 
 
+### Running tests
+
+You can run the tests the usual way, for example with
+`devtools::test()`. New cases for which you just wrote an expectation
+will be skipped. Failed tests will show as an error.
+
+
+### Testing versus Monitoring
+
+When a figure doesn't match its saved version, it is only reported as a failure under these circumstances:
+
+- When the `NOT_CRAN` environment is set. In particular, devtools sets this when running the tests interactively.
+
+- On Travis, Appveyor, or any environment where the `Sys.getenv("CI")` is set.
+
+Otherwise, the failure is ignored. The motivation for this is that vdiffr is a monitoring tool and shouldn't cause R CMD check failures on the CRAN machines.
+
+Checking the appearance of a figure is inherently fragile. It is a bit like testing for errors by matching exact error messages. These messages are susceptible to change at any time. Similarly, the appearance of plots depends on a lot of upstream code, such as the way margins and spacing are computed. vdiffr uses a special ggplot2 theme that should change very rarely, but there are just too many upstream factors that could cause breakages. For this reason, figure mismatches are not necessarily representative of actual failures.
+
+Visual testing is not an alternative to writing unit tests for the internal data transformations performed during the creation of your figure. It is more of a monitoring tool that allows you to quickly check how the appearance of your figures changes over time, and to manually assess whether changes reflect actual problems in your packages.
+
+If you want vdiffr to fail on CRAN machines as well, just set the environment variable `CI` to `"true"` in a `setup-vdiffr.R` file in your testthat folder.
+
+
 ### RStudio integration
 
 An addin to launch `manage_cases()` is provided with vdiffr. Use the
 addin menu to launch the Shiny app in an RStudio dialog.
 
-![RStudio addin](https://raw.githubusercontent.com/lionel-/vdiffr/readme/rstudio-vdiffr.png)
+![RStudio addin](https://raw.githubusercontent.com/r-lib/vdiffr/readme/rstudio-vdiffr.png)
 
 
 ### ESS integration
@@ -137,75 +165,17 @@ C-v`, include something like this in your init file:
 ```
 
 
-## Technical Aspects
+## Debugging
 
-### FreeType dependency
+It is sometimes difficult to understand the cause of a failure.  This usually indicates that the plot is not created deterministically. Potential culprits are:
 
-The software FreeType plays a key role in vdiffr. It is used to
-compute the extents of text boxes and thus determine the dimensions of
-graphical elements containing text. These dimensions are then recorded
-in the SVG files.
+* Some of the plot components depend on random variation. Try setting a seed.
 
-Small changes in the algorithm implemented in FreeType to compute text
-extents will produce different SVGs. For this reason, it is important
-that the FreeType version that was used to create validated cases be
-the same as the one on the system running the tests. To avoid false
-failures, the visual tests are skipped when that's not the case. The
-minor version is not taken into account so FreeType 2.7.1 is deemed
-compatible with 2.7.2 but not with 2.8.0.
+* The plot depends on some system library. For instance sf plots depend on libraries like GEOS and GDAL. It might not be possible to test these plots with vdiffr (which can still be used for manual inspection, add a [testthat::skip()] before the `expect_doppelganger()` call in that case).
 
-In practice, this means that package contributors should only validate
-visual cases if their FreeType version matches the one of the package
-maintainer. Also, the maintainer must update the version recorded in
-the package repository (in the file `./tests/figs/deps.txt`) when
-FreeType has been updated on their system. Running
-`vdiffr::validate_cases()` updates the dependency file even if there
-are no visual case to update.
+To help you understand the causes of a failure, vdiffr automatically logs the SVG diff of all failures when run under R CMD check. The log is located in `tests/vdiffr.Rout.fail` and should be displayed on Travis.
 
-
-### Windows platforms
-
-Appveyor does not require any configuration since FreeType 2.6.0 is
-automatically installed on this platform along with gdtools. However,
-Fontconfig builds a cache of all system fonts the first time it is
-run, which can take a while. It is a good idea to add the following in
-a `fontconfig-helper.R` testthat file in order to speed up the cache
-building on Appveyor and on CRAN's Windows servers:
-
-```{r}
-on_appveyor <- function() {
-  identical(Sys.getenv("APPVEYOR"), "True")
-}
-on_cran <- function() {
-  !identical(Sys.getenv("NOT_CRAN"), "true")
-}
-
-# Use minimal fonts.conf to speed up fc-cache
-if (on_appveyor() || on_cran()) {
-  gdtools::set_dummy_conf()
-}
-```
-
-
-### Dependency notes
-
-vdiffr currently uses svglite to save the plots in a text format that
-makes it easy to perform comparisons. This makes the test cases
-dependent on that package as the SVG translation of the plot may
-change across different versions of svglite (though that should not
-happen often). For this reason, whenever you validate a graphical test
-case, the `tests/figs/deps.txt` file is updated with a note containing
-the svglite version. This works the same way as the roxygen version
-note.
-
-Your graphics might be dependent on other packages besides svglite. If
-your package is an extension to ggplot2 for instance, the appearance
-of your plot may change as ggplot2 evolves (as with the 2.0 version
-which tweaked the grayness of the background color among other
-changes). For this reason, `expect_doppelganger()` adds a dependence
-on ggplot2 when you supply a ggplot2 object. You can also manually add
-a dependency on any other package by calling `vdiffr::add_dependency()`
-anywhere in a test file.
+You can also set the `VDIFFR_LOG_PATH` environment variable with `Sys.setenv()` to unconditionally (also interactively) log failures in the file pointed by the variable.
 
 
 ## Implementation
@@ -220,7 +190,7 @@ reporters are usually meant to provide output for the end user, you
 can also use them in functions to interact with testthat.
 
 vdiffr has a
-[special reporter](https://github.com/lionel-/vdiffr/blob/master/R/testthat-reporter.R)
+[special reporter](https://github.com/r-lib/vdiffr/blob/master/R/testthat-reporter.R)
 that does nothing but activate a collecter for the visual test
 cases. `collect_cases()` calls `devtools::test()` with this
 reporter. When `expect_doppelganger()` is called, it first checks
@@ -239,6 +209,6 @@ about the tests of interest and wrap them in a data structure.
 Comparing SVG files is convenient and should work correctly in most
 situations. However, SVG is not suitable for tracking really subtle
 changes and regressions. See
-[vdiffr's issue #1](https://github.com/lionel-/vdiffr/issues/1) for a
+[vdiffr's issue #1](https://github.com/r-lib/vdiffr/issues/1) for a
 discussion on this. vdiffr may gain additional comparison backends in
 the future to make the tests more stringent.

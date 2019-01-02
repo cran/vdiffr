@@ -1,21 +1,20 @@
 #' Collect cases
 #'
 #' These functions are mainly intended for internal use by
-#' \code{\link{manage_cases}()}. They are useful to programmatically
-#' collect cases.
+#' [manage_cases()]. They are useful to programmatically collect
+#' cases.
 #'
 #' @inheritParams manage_cases
-#' @seealso \code{\link{manage_cases}()}
-#' @return A \code{cases} object. \code{collect_new_cases()},
-#'   \code{collect_mismatched_cases()} and
-#'   \code{collect_orphaned_cases()} return a filtered \code{cases}
-#'   object.
+#' @seealso [manage_cases()]
+#' @return A `cases` object. `collect_new_cases()`,
+#'   `collect_mismatched_cases()` and `collect_orphaned_cases()`
+#'   return a filtered `cases` object.
 #' @export
 collect_cases <- function(package = ".", filter = NULL) {
   on.exit(set_active_collecter(NULL))
 
   message("Running testthat to collect visual cases\n\n",
-    "  N = New visual case\n  X = Failed doppelganger\n  o = Convincing doppelganger\n")
+    "  N = New visual case\n  X = Failed doppelganger\n  o = Successful doppelganger\n")
   package <- devtools::as.package(package)
   reporter <- vdiffrReporter$new(package$path)
   suppressMessages(devtools::test(package, filter = filter, reporter = reporter))
@@ -30,7 +29,15 @@ collect_cases <- function(package = ".", filter = NULL) {
       paste(cases_names[is_duplicated], collapse = ", "))
   }
 
-  c(cases, orphaned_cases(cases))
+  # Only check for orphaned cases if we have collected all figures in
+  # all test files. Ideally we'd check for orphaned cases in the
+  # filter set, but there's currently no way of figuring out the
+  # files where saved figures were generated from.
+  if (is_null(filter)) {
+    cases <- c(cases, orphaned_cases(cases))
+  }
+
+  cases
 }
 
 orphaned_cases <- function(cases) {
@@ -86,12 +93,12 @@ collect_orphaned_cases <- function(package = ".") {
 #' Cases validation
 #'
 #' These functions are mainly intended for internal use by
-#' \code{\link{manage_cases}()}. They are useful to programmatically
-#' validate cases or delete orphaned cases.
+#' [manage_cases()]. They are useful to programmatically validate
+#' cases or delete orphaned cases.
 #'
-#' @seealso \code{\link{manage_cases}()}
-#' @param cases A \code{cases} object returned by one of the
-#'   collecting functions such as \code{\link{collect_cases}()}.
+#' @seealso [manage_cases()]
+#' @param cases A `cases` object returned by one of the collecting
+#'   functions such as [collect_cases()].
 #' @export
 validate_cases <- function(cases = collect_new_cases()) {
   stopifnot(is_cases(cases))
@@ -102,28 +109,15 @@ validate_cases <- function(cases = collect_new_cases()) {
     stop("Internal error: Package path is missing", call. = FALSE)
   }
 
-  write_deps_note(cases, pkg_path)
+  write_deps_note(pkg_path)
   walk(cases, update_case, pkg_path)
 }
 
-write_deps_note <- function(cases, pkg_path) {
-  versions_lines <- glue(
-    "Fontconfig: { gdtools::version_fontconfig() }
-     FreeType: { gdtools::version_freetype() }
-     Cairo: { gdtools::version_cairo() }"
-  )
+write_deps_note <- function(pkg = NULL) {
+  pkg <- pkg %||% usethis::proj_get()
 
-  deps <- attr(cases, "deps")
-  versions <- map_chr(deps, package_version)
-  deps_lines <- map2_chr(deps, versions, paste, sep = ": ")
-
-  deps_lines <- chr_lines(
-    versions_lines,
-    deps_lines
-  )
-
-  deps_note_file <- file.path(pkg_path, "tests", "figs", "deps.txt")
-  writeLines(deps_lines, deps_note_file)
+  deps_note_file <- file.path(pkg, "tests", "figs", "deps.txt")
+  cat_line(vdiffr_info(), file = deps_note_file)
 }
 
 update_case <- function(case, pkg_path) {
@@ -209,19 +203,19 @@ filter_cases <- function(cases, type) {
 }
 
 case <- function(case) {
-  set_attrs(case, class = "case")
+  structure(case, class = "case")
 }
 mismatch_case <- function(case) {
-  set_attrs(case, class = c("mismatch_case", "case"))
+  structure(case, class = c("mismatch_case", "case"))
 }
 new_case <- function(case) {
-  set_attrs(case, class = c("new_case", "case"))
+  structure(case, class = c("new_case", "case"))
 }
 orphaned_case <- function(case) {
-  set_attrs(case, class = c("orphaned_case", "case"))
+  structure(case, class = c("orphaned_case", "case"))
 }
 success_case <- function(case) {
-  set_attrs(case, class = c("success_case", "case"))
+  structure(case, class = c("success_case", "case"))
 }
 
 is_case <- function(case) {

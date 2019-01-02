@@ -10,22 +10,25 @@
 \alias{widget_diff}
 \title{HTML Widgets for graphical comparison}
 \usage{
-widget_toggle_(before, after, width = NULL, height = NULL)
+widget_toggle_(before, after, ..., width = NULL, height = NULL)
 
-widget_slide_(before, after, width = NULL, height = NULL)
+widget_slide_(before, after, ..., width = NULL, height = NULL)
 
-widget_diff_(before, after, width = NULL, height = NULL)
+widget_diff_(before, after, ..., width = NULL, height = NULL)
 
-widget_toggle(before, after, width = NULL, height = NULL)
+widget_toggle(before, after, ..., width = NULL, height = NULL)
 
-widget_slide(before, after, width = NULL, height = NULL)
+widget_slide(before, after, ..., width = NULL, height = NULL)
 
-widget_diff(before, after, width = NULL, height = NULL)
+widget_diff(before, after, ..., width = NULL, height = NULL)
 }
 \arguments{
 \item{before}{The picture that is taken as reference.}
 
 \item{after}{The picture against which the reference is compared.}
+
+\item{...}{Unused. Meant for collecting unknown arguments and allow
+widget extensions.}
 
 \item{width}{Fixed width for widget (in css units). The default is
 \code{NULL}, which results in intelligent automatic sizing based on the
@@ -41,11 +44,10 @@ Markdown document or Shiny application.
 }
 \details{
 The regular versions take plots or functions as \code{before} and
-\code{after} arguments (see \code{\link{expect_doppelganger}()}
-for details). The versions suffixed with underscores take HTML image
-sources. These can be paths to SVG files or inlined SVG
-images. Currently, \code{widget_diff_()} is compatible only with
-inlined images.
+\code{after} arguments (see \code{\link[=expect_doppelganger]{expect_doppelganger()}} for details). The
+versions suffixed with underscores take HTML image sources. These
+can be paths to SVG files or inlined SVG images. Currently,
+\code{widget_diff_()} is compatible only with inlined images.
 }
 \examples{
 p1 <- function() hist(mtcars$disp)

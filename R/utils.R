@@ -72,84 +72,118 @@ dir_exists <- function(path) {
   !identical(path, "") && file.exists(paste0(path, .Platform$file.sep))
 }
 
-chr_lines <- function(..., trailing = FALSE) {
+cat_line <- function(..., trailing = TRUE, file = "") {
+  cat(paste_line(..., trailing = trailing), file = file)
+}
+paste_line <- function(..., trailing = FALSE) {
   lines <- paste(chr(...), collapse = "\n")
   if (trailing) {
     lines <- paste0(lines, "\n")
   }
   lines
 }
-meow <- function(...) {
-  cat(chr_lines(..., trailing = TRUE))
-}
-cxn_meow <- function(.cxn, ...) {
-  cat(chr_lines(..., trailing = TRUE), file = .cxn)
-}
-
-svg_files_lines <- function(case, pkg_path = NULL) {
-  name <- case$name
-  if (is_null(pkg_path)) {
-    original_path <- case$path
-  } else {
-    # The reporter is not run from the test directory
-    original_path <- from_test_dir(pkg_path, case$path)
-  }
-
-  # If called from interactive use, we most likely can't figure out
-  # where the original SVG lives (most likely in a subdirectory within
-  # the `figs` folder) so we don't print it.
-  if (file.exists(original_path)) {
-    original_lines <- chr_lines(
-      "> Original SVG:",
-      readLines(original_path),
-      ""
-    )
-  } else {
-    original_lines <- ""
-  }
-
-  lines <- chr_lines(
-    glue(">> Failed doppelganger: { case$name }"),
-    original_lines,
-    "> Testcase SVG:",
-    readLines(case$testcase),
-    ""
-  )
-}
-from_test_dir <- function(pkg_path, path) {
-  file.path(pkg_path, "tests", "testthat", path)
-}
 
 push_log <- function(case) {
-  if (!is_checking()) {
-    return(invisible(FALSE))
+  log_path <- Sys.getenv("VDIFFR_LOG_PATH")
+
+  # If no envvar is set, check if we are running under R CMD check. In
+  # that case, always push a log file.
+  if (!nzchar(log_path)) {
+    if (!is_checking()) {
+      return(invisible(FALSE))
+    }
+    log_path <- testthat::test_path("..", "vdiffr.Rout.fail")
   }
 
-  log_path <- file.path("..", "vdiffr.Rout.fail")
   log_exists <- file.exists(log_path)
 
   file <- file(log_path, "a")
   on.exit(close(file))
 
   if (!log_exists) {
-    cxn_meow(file, glue(
-      "R environment:
-       - vdiffr: { utils::packageVersion('vdiffr') }
-       - gdtools: { utils::packageVersion('gdtools') }
-       - svglite: { utils::packageVersion('svglite') }
-
-       System environment:
-       - Fontconfig: { gdtools::version_fontconfig() }
-       - FreeType: { gdtools::version_freetype() }
-       - Cairo: { gdtools::version_cairo() }
-
-      "
-    ))
+    cat_line(
+      file = file,
+      "Environment:",
+      vdiffr_info(),
+      ""
+    )
   }
-  cxn_meow(file, svg_files_lines(case))
 
-  invisible(TRUE)
+  diff_lines <- diff_lines(case, case$path, case$testcase)
+  cat_line(file = file, "", !!!diff_lines, "")
 }
 is_checking <- function() {
-  nzchar(Sys.getenv("R_TESTS"))
+  !nzchar(Sys.getenv("NOT_CRAN"))
+}
+
+diff_lines <- function(case,
+                       before_path,
+                       after_path) {
+  before <- readLines(before_path)
+  after <- readLines(after_path)
+
+  diff <- diffobj::diffChr(
+    before,
+    after,
+    format = "raw"
+  )
+
+  # No format() method?
+  lines <- utils::capture.output(print(diff))
+
+  paste_line(
+    glue("Failed doppelganger: {case$name} ({case$path})"),
+    "",
+    !!!lines
+  )
+}
+
+
+vdiffr_info <- function() {
+  glue(
+    "- vdiffr-svg-engine: { SVG_ENGINE_VER }
+     - vdiffr: { utils::packageVersion('vdiffr') }
+     - freetypeharfbuzz: { utils::packageVersion('freetypeharfbuzz') }"
+  )
+}
+
+is_vdiffr_stale <- function() {
+  deps_file <- testthat::test_path("..", "figs", "deps.txt")
+
+  if (!file.exists(deps_file)) {
+    return(FALSE)
+  }
+  deps <- readLines(deps_file)
+
+  ver <- purrr::detect(deps, function(dep) grepl("^- vdiffr-svg-engine: ", dep))
+  if (is_null(ver)) {
+    return(TRUE)
+  }
+
+  ver <- substr(ver, nchar("- vdiffr-svg-engine: ") + 1, nchar(ver))
+  ver <- base::package_version(ver)
+  current <- base::package_version(SVG_ENGINE_VER)
+
+  ver < current
+}
+
+hash_encode_url <- function(url){
+  gsub("#", "%23", url)
+}
+
+is_ci <- function() {
+  override <- Sys.getenv("VDIFFR_RUN_TESTS")
+  if (nzchar(override)) {
+    override <- parse_expr(toupper(override))
+    if (!is_bool(override)) {
+      abort("`VDIFFR_RUN_TESTS` must be \"true\" or \"false\"")
+    }
+    return(override)
+  }
+
+  nzchar(Sys.getenv("CI")) || nzchar(Sys.getenv("NOT_CRAN"))
+}
+
+is_bool <- function(x) {
+  is_logical(x, n = 1) && !is.na(x)
 }

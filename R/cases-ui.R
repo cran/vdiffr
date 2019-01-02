@@ -1,18 +1,20 @@
 #' Manage visual test cases with a Shiny app
 #'
 #' @inheritParams devtools::test
+#' @inheritParams shiny::shinyApp
 #' @param package Package description, can be path or package
-#'   name. See \code{\link[devtools]{as.package}} for more information.
-#' @seealso \code{\link{vdiffrAddin}()}, \code{\link{collect_cases}()}
-#'   and \code{\link{validate_cases}()}
+#'   name. See [devtools::as.package()] for more information.
+#' @param ... Unused.
+#' @seealso [vdiffrAddin()], [collect_cases()], and [validate_cases()]
 #' @export
-manage_cases <- function(package = ".", filter = NULL) {
+manage_cases <- function(package = ".", filter = NULL, ..., options = list()) {
   cases <- collect_cases(package, filter = filter)
   cases <- filter_cases(cases, c("new_case", "mismatch_case", "orphaned_case"))
 
   vdiffrApp <- shiny::shinyApp(
     ui = vdiffrUi(cases),
-    server = vdiffrServer(cases)
+    server = vdiffrServer(cases),
+    options = options
   )
   shiny::runApp(vdiffrApp)
 }
@@ -21,8 +23,7 @@ manage_cases <- function(package = ".", filter = NULL) {
 #'
 #' The package is detected by looking for the currently active
 #' project, then for the current folder if no project is active.
-#' @seealso \code{\link{manage_cases}()}, \code{\link{collect_cases}()}
-#'   and \code{\link{validate_cases}()}
+#' @seealso [manage_cases()], [collect_cases()], and [validate_cases()]
 #' @export
 vdiffrAddin <- function() {
   pkg_path <- rstudioapi::getActiveProject() %||% "."

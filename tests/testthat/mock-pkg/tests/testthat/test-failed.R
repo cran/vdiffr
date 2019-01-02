@@ -12,13 +12,7 @@ skip_if_maintenance <- function() {
   }
 }
 
-test_that("(maintenance) Reset failing figure", {
-  if (!maintenance) {
-    skip("maintenance")
-  }
-  expect_doppelganger("myplot", p1_orig, "")
-})
-test_that("New plots work are collected", {
+test_that("mismatches are hard failures when NOT_CRAN is set", {
   skip_if_maintenance()
   expect_doppelganger("myplot", p1_fail, "")
 })
@@ -28,7 +22,24 @@ test_that("Duplicated expectations issue a warning", {
   expect_doppelganger("myplot", p1_fail, "")
 })
 
-test_that("SVGs of failing cases are printed when `verbose` is TRUE", {
+test_that("mismatches are hard failures when CI is set", {
   skip_if_maintenance()
-  expect_doppelganger("myplot", p1_fail, "", verbose = TRUE)
+  withr::local_envvar(c(NOT_CRAN = "", CI = "true"))
+  expect_doppelganger("myplot", p1_fail, "")
+})
+
+test_that("mismatches are skipped when NOT_CRAN is unset", {
+  skip_if_maintenance()
+  withr::local_envvar(c(NOT_CRAN = "", CI = ""))
+  expect_doppelganger("myplot", p1_fail, "")
+})
+
+
+# Maintenance --------------------------------------------------------
+
+test_that("(maintenance) Reset failing figure", {
+  if (!maintenance) {
+    skip("maintenance")
+  }
+  expect_doppelganger("myplot", p1_orig, "")
 })
