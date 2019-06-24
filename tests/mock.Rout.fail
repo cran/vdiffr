@@ -1,6 +1,6 @@
 Environment:
 - vdiffr-svg-engine: 1.0
-- vdiffr: 0.3.0
+- vdiffr: 0.3.0.9000
 - freetypeharfbuzz: 0.2.5
 
 
@@ -9,18 +9,18 @@ Failed doppelganger: myplot (../figs//myplot.svg)
 < before                                                                    
 > after                                                                     
 @@ 50,4 / 50,5 @@                                                           
-  <rect x='641.72' y='401.98' width='20.80' height='118.58' style='stroke-wi
-  dth: 1.07; stroke: none; stroke-linecap: butt; fill: #595959;' clip-path='
-  url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3wyMi41Mg==)' />                          
-  <rect x='662.52' y='401.98' width='20.80' height='118.58' style='stroke-wi
-  dth: 1.07; stroke: none; stroke-linecap: butt; fill: #595959;' clip-path='
-  url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3wyMi41Mg==)' />                          
-> <line x1='417.09' y1='544.27' x2='417.09' y2='22.52' style='stroke-width: 
-: 1.07; stroke-linecap: butt;' clip-path='url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3w
-: yMi41Mg==)' />                                                            
-  <rect x='28.09' y='22.52' width='686.43' height='521.75' style='stroke-wid
-  th: 1.07; stroke: #333333;' clip-path='url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3wy
-  Mi41Mg==)' />                                                             
+  <rect x='641.70' y='402.67' width='20.81' height='118.72' style='stroke-wi
+  dth: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; f
+  ill: #595959;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3wyMi43Nw==)' />
+  <rect x='662.50' y='402.67' width='20.81' height='118.72' style='stroke-wi
+  dth: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; f
+  ill: #595959;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3wyMi43Nw==)' />
+> <line x1='417.00' y1='545.13' x2='417.00' y2='22.77' style='stroke-width: 
+: 1.07; stroke-linecap: butt;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3w
+: yMi43Nw==)' />                                                            
+  <rect x='27.89' y='22.77' width='686.64' height='522.36' style='stroke-wid
+  th: 1.07; stroke: #333333;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3wy
+  Mi43Nw==)' />                                                             
   <defs>                                                                    
 
 
@@ -29,18 +29,18 @@ Failed doppelganger: myplot (../figs//myplot.svg)
 < before                                                                    
 > after                                                                     
 @@ 50,4 / 50,5 @@                                                           
-  <rect x='641.72' y='401.98' width='20.80' height='118.58' style='stroke-wi
-  dth: 1.07; stroke: none; stroke-linecap: butt; fill: #595959;' clip-path='
-  url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3wyMi41Mg==)' />                          
-  <rect x='662.52' y='401.98' width='20.80' height='118.58' style='stroke-wi
-  dth: 1.07; stroke: none; stroke-linecap: butt; fill: #595959;' clip-path='
-  url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3wyMi41Mg==)' />                          
-> <line x1='417.09' y1='544.27' x2='417.09' y2='22.52' style='stroke-width: 
-: 1.07; stroke-linecap: butt;' clip-path='url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3w
-: yMi41Mg==)' />                                                            
-  <rect x='28.09' y='22.52' width='686.43' height='521.75' style='stroke-wid
-  th: 1.07; stroke: #333333;' clip-path='url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3wy
-  Mi41Mg==)' />                                                             
+  <rect x='641.70' y='402.67' width='20.81' height='118.72' style='stroke-wi
+  dth: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; f
+  ill: #595959;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3wyMi43Nw==)' />
+  <rect x='662.50' y='402.67' width='20.81' height='118.72' style='stroke-wi
+  dth: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; f
+  ill: #595959;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3wyMi43Nw==)' />
+> <line x1='417.00' y1='545.13' x2='417.00' y2='22.77' style='stroke-width: 
+: 1.07; stroke-linecap: butt;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3w
+: yMi43Nw==)' />                                                            
+  <rect x='27.89' y='22.77' width='686.64' height='522.36' style='stroke-wid
+  th: 1.07; stroke: #333333;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3wy
+  Mi43Nw==)' />                                                             
   <defs>                                                                    
 
 
@@ -49,17 +49,17 @@ Failed doppelganger: myplot (../figs//myplot.svg)
 < before                                                                    
 > after                                                                     
 @@ 50,4 / 50,5 @@                                                           
-  <rect x='641.72' y='401.98' width='20.80' height='118.58' style='stroke-wi
-  dth: 1.07; stroke: none; stroke-linecap: butt; fill: #595959;' clip-path='
-  url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3wyMi41Mg==)' />                          
-  <rect x='662.52' y='401.98' width='20.80' height='118.58' style='stroke-wi
-  dth: 1.07; stroke: none; stroke-linecap: butt; fill: #595959;' clip-path='
-  url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3wyMi41Mg==)' />                          
-> <line x1='417.09' y1='544.27' x2='417.09' y2='22.52' style='stroke-width: 
-: 1.07; stroke-linecap: butt;' clip-path='url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3w
-: yMi41Mg==)' />                                                            
-  <rect x='28.09' y='22.52' width='686.43' height='521.75' style='stroke-wid
-  th: 1.07; stroke: #333333;' clip-path='url(#cpMjguMDl8NzE0LjUyfDU0NC4yN3wy
-  Mi41Mg==)' />                                                             
+  <rect x='641.70' y='402.67' width='20.81' height='118.72' style='stroke-wi
+  dth: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; f
+  ill: #595959;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3wyMi43Nw==)' />
+  <rect x='662.50' y='402.67' width='20.81' height='118.72' style='stroke-wi
+  dth: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; f
+  ill: #595959;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3wyMi43Nw==)' />
+> <line x1='417.00' y1='545.13' x2='417.00' y2='22.77' style='stroke-width: 
+: 1.07; stroke-linecap: butt;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3w
+: yMi43Nw==)' />                                                            
+  <rect x='27.89' y='22.77' width='686.64' height='522.36' style='stroke-wid
+  th: 1.07; stroke: #333333;' clip-path='url(#cpMjcuODl8NzE0LjUyfDU0NS4xM3wy
+  Mi43Nw==)' />                                                             
   <defs>                                                                    
 
