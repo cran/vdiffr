@@ -10,14 +10,21 @@
 #'   `collect_mismatched_cases()` and `collect_orphaned_cases()`
 #'   return a filtered `cases` object.
 #' @export
-collect_cases <- function(package = ".", filter = NULL) {
+collect_cases <- function(package = ".", filter = NULL, invert = FALSE) {
   on.exit(set_active_collecter(NULL))
 
   message("Running testthat to collect visual cases\n\n",
     "  N = New visual case\n  X = Failed doppelganger\n  o = Successful doppelganger\n")
   package <- devtools::as.package(package)
   reporter <- vdiffrReporter$new(package$path)
-  suppressMessages(devtools::test(package, filter = filter, reporter = reporter))
+  suppressMessages(
+    devtools::test(
+      package,
+      filter = filter,
+      reporter = reporter,
+      invert = invert
+    )
+  )
 
   cases <- active_collecter()$get_cases()
 
@@ -140,6 +147,8 @@ delete_orphaned_cases <- function(cases = collect_orphaned_cases()) {
   walk(paths, file.remove)
 }
 
+# It is brittle to keep `pkg_path` in attributes. Maybe change to an
+# R6 object?
 cases <- function(x, pkg_path, deps = NULL) {
   structure(x,
     class = "cases",

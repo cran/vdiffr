@@ -113,7 +113,7 @@ push_log <- function(case) {
   cat_line(file = file, "", !!!diff_lines, "")
 }
 is_checking <- function() {
-  !nzchar(Sys.getenv("NOT_CRAN"))
+  nzchar(Sys.getenv("CI")) || !nzchar(Sys.getenv("NOT_CRAN"))
 }
 
 diff_lines <- function(case,
@@ -187,3 +187,22 @@ is_ci <- function() {
 is_bool <- function(x) {
   is_logical(x, n = 1) && !is.na(x)
 }
+
+next_element <- function(element, group, direction = 1) {
+  if (element == "") {
+    return(NULL) # if a type is empty
+  }
+
+  next_position <- match(element, group) + direction
+
+  if (next_position > length(group)) {
+    next_position <- next_position - length(group)
+  } else if (next_position < 1) {
+    next_position <- length(group)
+  }
+
+  group[next_position]
+}
+
+# Silence R CMD check NOTE
+freetypeharfbuzz::font_info
