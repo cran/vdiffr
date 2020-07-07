@@ -1,4 +1,4 @@
-4f8d4e5a62c0e134f49381433531ad9b *DESCRIPTION
+9241e5ff5785abdc8a887f4dd8314d6e *DESCRIPTION
 0d8e88328c6642c6ed8e27f9747482ec *LICENSE
 62f5e588d64af277d68ed918b1bb47d7 *NAMESPACE
 48faa3fc406e8be15e7c78c200458af2 *NEWS.md
@@ -48,7 +48,7 @@ b6528644de91ac5e2286ca4c5c9efa32 *man/validate_cases.Rd
 7833c3e58c3a7009368ad28acbad50a1 *src/SvgStream.h
 ab5f0fad84d81e2ee7c3d5e8710bffc5 *src/algo-it.h
 4c6966bd5ef8bda7dbfb241ea8ce4d41 *src/compare.cpp
-7a3e0b99fd1201e93899e04b60470188 *src/devSVG.cpp
+18ad87a9328b0b7ec19de3c8cd69c80a *src/devSVG.cpp
 c5e996b9f16362a973933bef7a84f850 *src/utils.cpp
 d3abedf3f4337762d1c72a83bd062d47 *src/utils.h
 e3bc3a10745e061f20a6b3e694efe6c1 *tests/mock.Rout.fail
