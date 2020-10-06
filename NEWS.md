@@ -1,4 +1,10 @@
 
+# vdiffr 0.3.3
+
+- Compatibility with r-devel (@pmur002).
+- Compatibility with testthat 3.
+
+
 # vdiffr 0.3.2
 
 - Fixed CRAN checks on r-devel.

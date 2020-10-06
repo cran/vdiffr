@@ -677,7 +677,7 @@ SEXP svg_set_pattern(SEXP pattern, pDevDesc dd) {
     return R_NilValue;
 }
 
-void svg_release_pattern(SEXP ref, pDevDesc dd) {} 
+void svg_release_pattern(SEXP ref, pDevDesc dd) {}
 
 SEXP svg_set_clip_path(SEXP path, SEXP ref, pDevDesc dd) {
     return R_NilValue;
@@ -733,7 +733,7 @@ pDevDesc svg_driver_new(SvgStreamPtr stream, int bg, double width,
   dd->setMask         = svg_set_mask;
   dd->releaseMask     = svg_release_mask;
 #endif
- 
+
   // UTF-8 support
   dd->wantSymbolUTF8 = (Rboolean) 1;
   dd->hasTextUTF8 = (Rboolean) 1;
