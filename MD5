@@ -1,11 +1,11 @@
-6205560a8c6ceb29466d114d6c83ebae *DESCRIPTION
+a54fd1c57e06e997b6fbcb2ef14b1a47 *DESCRIPTION
 77ee2ef98c7903c4a2ff27c1267c84b1 *LICENSE
 d3ded957b6e400f917ed8784d407dce9 *LICENSE.note
 7998bb7cbe5f3e01bb14b21c6044ac51 *NAMESPACE
-a1cbcf10cc1d12938844fc7096c7e1f1 *NEWS.md
+056f4d15d2008869d5708b773eaa2521 *NEWS.md
 f7e47e36768d23710243f70726558b37 *R/cpp11.R
 e6143847785f7e1dae8bb052a3c94bfb *R/embed-svglite.R
-bd40aa79fec227be6bdfc7d50188f007 *R/expect-doppelganger.R
+a15511251e697a757c26ac679301032d *R/expect-doppelganger.R
 d4375fcade19d4b64f3e3e0ace0193bc *R/svg.R
 567a17db0e6517fa7d6ce278f28eefff *R/svglite/SVG.R
 cdcb793f62f99afd861bd21d9d064b16 *R/svglite/inlineSVG.R
@@ -79,7 +79,10 @@ c26675c7d067b958e28f5cfe228b93d9 *tests/testthat/mock-pkg/tests/testthat/_snaps/
 56da6d63ae23c277462dc2f823bab100 *tests/testthat/mock-pkg/tests/testthat/test-ggplot.R
 deeabbddf500eb912c2ebf2689f1bcbc *tests/testthat/mock-pkg/tests/testthat/test-new.R
 d9c2a1ac3ba36deac838e1819fa0ecb5 *tests/testthat/mock-pkg/tests/testthat/test-passed.R
-960292171d0a7afec0464f5fb3238df7 *tests/testthat/test-expect-doppelganger.R
+dcbc08adc250f01eca5942e8c98efc1f *tests/testthat/test-expect-doppelganger.R
 a0d7ad2a463cff1aa5d5d08aa35dacdc *tests/testthat/test-ggplot.R
 c699505d82e0ace0896919c0b69e2505 *tests/testthat/test-log.R
+850776639573200b634640574ea7054e *tests/testthat/test-snapshot/_snaps/snapshot/error-resets-snapshots.svg
+850776639573200b634640574ea7054e *tests/testthat/test-snapshot/_snaps/snapshot/skip-resets-snapshots.svg
+47b250ddfe5f1b3efe09595a533718f3 *tests/testthat/test-snapshot/test-snapshot.R
 880cd70b4c2ee5164ed16c3f1d733022 *tools/winlibs.R
