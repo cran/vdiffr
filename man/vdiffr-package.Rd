@@ -6,13 +6,12 @@
 \alias{vdiffr-package}
 \title{vdiffr: Visual Regression Testing and Graphical Diffing}
 \description{
-An extension to the 'testthat' package that makes it easy
-    to add graphical unit tests. It provides a Shiny application to
-    manage the test cases.
+An extension to the 'testthat' package that makes it easy to add graphical unit tests. It provides a Shiny application to manage the test cases.
 }
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://vdiffr.r-lib.org/}
   \item \url{https://github.com/r-lib/vdiffr}
   \item Report bugs at \url{https://github.com/r-lib/vdiffr/issues}
 }
@@ -31,7 +30,7 @@ Authors:
 
 Other contributors:
 \itemize{
-  \item RStudio [copyright holder]
+  \item RStudio [copyright holder, funder]
   \item Tony Plate (svglite: Early line dashing code) [contributor]
   \item David Gohel (svglite: Line dashing code and raster code) [contributor]
   \item Yixuan Qiu (svglite: Improved styles; polypath implementation) [contributor]
