@@ -1,8 +1,8 @@
-107386cba0cbb3f1edeb3d26cce1b7a1 *DESCRIPTION
+f39f232aded61bc3e7b5a000c977b845 *DESCRIPTION
 77ee2ef98c7903c4a2ff27c1267c84b1 *LICENSE
 d3ded957b6e400f917ed8784d407dce9 *LICENSE.note
 7998bb7cbe5f3e01bb14b21c6044ac51 *NAMESPACE
-e203e53f4cbf37a54889b7e426958316 *NEWS.md
+ae17e21af1f050320328e1f826f2bcca *NEWS.md
 f7e47e36768d23710243f70726558b37 *R/cpp11.R
 e6143847785f7e1dae8bb052a3c94bfb *R/embed-svglite.R
 c1d852a7044d211f74b29c68b8ed4516 *R/expect-doppelganger.R
@@ -32,7 +32,7 @@ d5751b7c4a3303df5279e6cb69c894ea *src/SvgStream.h
 0d7a89dafb484ce7144c8fcb4ac8ab83 *src/algo-it.h
 dfe4d9008321756e568be701b0970190 *src/compare.cpp
 d0ca8ade2ce4c1fdee38d111fde51d8a *src/cpp11.cpp
-3f28976150edaf4ab8c257d3d3de91c0 *src/devSVG.cpp
+9c38cd425914b8ae9643529e3d14e40c *src/devSVG.cpp
 b41ae8758d99bbccb4bf54e4e448377a *src/engine_version.cpp
 81482b01edde1b0929a7c5e1625dcc6a *src/engine_version.h
 6c59a5120aac2f217425a11d8e9c4da1 *src/glyph_dims.h
