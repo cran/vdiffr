@@ -1,9 +1,7 @@
-CXX_STD = CXX11
+VERSION = 2.7.4
+RWINLIB = ../windows/harfbuzz-${VERSION}
 
-RWINLIB = ../windows/harfbuzz-2.7.4
-
-PKG_CPPFLAGS = -I${RWINLIB}/include \
-	-DSTRICT_R_HEADERS
+PKG_CPPFLAGS = -I${RWINLIB}/include
 
 PKG_LIBS = -L${RWINLIB}/lib${R_ARCH}${CRT} -lpng -lz
 

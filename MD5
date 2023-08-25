@@ -1,8 +1,8 @@
-f39f232aded61bc3e7b5a000c977b845 *DESCRIPTION
-77ee2ef98c7903c4a2ff27c1267c84b1 *LICENSE
+4af902ec86f3c77b4de758fb22200a73 *DESCRIPTION
+b59a3c7e0cc10ca8486bcf92c682592f *LICENSE
 d3ded957b6e400f917ed8784d407dce9 *LICENSE.note
 7998bb7cbe5f3e01bb14b21c6044ac51 *NAMESPACE
-ae17e21af1f050320328e1f826f2bcca *NEWS.md
+cd389479d8114c4ac15cea1d2dc6311a *NEWS.md
 f7e47e36768d23710243f70726558b37 *R/cpp11.R
 e6143847785f7e1dae8bb052a3c94bfb *R/embed-svglite.R
 c1d852a7044d211f74b29c68b8ed4516 *R/expect-doppelganger.R
@@ -25,14 +25,14 @@ c3978703d8f40f2679795335715e98f4 *man/figures/lifecycle-experimental.svg
 1c1fe7a759b86dc6dbcbe7797ab8246c *man/figures/lifecycle-superseded.svg
 369352b6c3c112ba1651d1133f100303 *man/vdiffr-package.Rd
 65e93f80c148d6132db104a446462163 *man/write_svg.Rd
-c38a387e5025d29da0a42bcec9d6b944 *src/Makevars
-ee44832d29700ddc939b5cd0dd519c7d *src/Makevars.ucrt
-f6a456f14bb6b1332e4677fb835e32ae *src/Makevars.win
+5f05efe55b70273f72fc1174e7da90c4 *src/Makevars
+4fd5cf1e830d3ebfc1ddb98e364eeb1f *src/Makevars.ucrt
+b48a6378658af3ebc24c61d69c272a9c *src/Makevars.win
 d5751b7c4a3303df5279e6cb69c894ea *src/SvgStream.h
 0d7a89dafb484ce7144c8fcb4ac8ab83 *src/algo-it.h
 dfe4d9008321756e568be701b0970190 *src/compare.cpp
 d0ca8ade2ce4c1fdee38d111fde51d8a *src/cpp11.cpp
-9c38cd425914b8ae9643529e3d14e40c *src/devSVG.cpp
+9f79846d56c16977b3e374c8dcb2b296 *src/devSVG.cpp
 b41ae8758d99bbccb4bf54e4e448377a *src/engine_version.cpp
 81482b01edde1b0929a7c5e1625dcc6a *src/engine_version.h
 6c59a5120aac2f217425a11d8e9c4da1 *src/glyph_dims.h
@@ -86,4 +86,4 @@ c699505d82e0ace0896919c0b69e2505 *tests/testthat/test-log.R
 850776639573200b634640574ea7054e *tests/testthat/test-snapshot/_snaps/snapshot/error-resets-snapshots.svg
 850776639573200b634640574ea7054e *tests/testthat/test-snapshot/_snaps/snapshot/skip-resets-snapshots.svg
 47b250ddfe5f1b3efe09595a533718f3 *tests/testthat/test-snapshot/test-snapshot.R
-25ee4943e53b02c4d8bb6a043e9da7b8 *tools/winlibs.R
+41b1e7cb2851ce354053145b660e0335 *tools/winlibs.R
