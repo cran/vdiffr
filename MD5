@@ -1,8 +1,8 @@
-4af902ec86f3c77b4de758fb22200a73 *DESCRIPTION
+d1154595c65ce063506e0bae984fd6b1 *DESCRIPTION
 b59a3c7e0cc10ca8486bcf92c682592f *LICENSE
 d3ded957b6e400f917ed8784d407dce9 *LICENSE.note
 7998bb7cbe5f3e01bb14b21c6044ac51 *NAMESPACE
-cd389479d8114c4ac15cea1d2dc6311a *NEWS.md
+6443911193262d383f8076e60a2cf7f0 *NEWS.md
 f7e47e36768d23710243f70726558b37 *R/cpp11.R
 e6143847785f7e1dae8bb052a3c94bfb *R/embed-svglite.R
 c1d852a7044d211f74b29c68b8ed4516 *R/expect-doppelganger.R
@@ -25,9 +25,9 @@ c3978703d8f40f2679795335715e98f4 *man/figures/lifecycle-experimental.svg
 1c1fe7a759b86dc6dbcbe7797ab8246c *man/figures/lifecycle-superseded.svg
 369352b6c3c112ba1651d1133f100303 *man/vdiffr-package.Rd
 65e93f80c148d6132db104a446462163 *man/write_svg.Rd
-5f05efe55b70273f72fc1174e7da90c4 *src/Makevars
-4fd5cf1e830d3ebfc1ddb98e364eeb1f *src/Makevars.ucrt
-b48a6378658af3ebc24c61d69c272a9c *src/Makevars.win
+c38a387e5025d29da0a42bcec9d6b944 *src/Makevars
+0117e7156d7f79ff4b5f170b8c897457 *src/Makevars.ucrt
+4d2216b08763d48df028dbfa55699aa5 *src/Makevars.win
 d5751b7c4a3303df5279e6cb69c894ea *src/SvgStream.h
 0d7a89dafb484ce7144c8fcb4ac8ab83 *src/algo-it.h
 dfe4d9008321756e568be701b0970190 *src/compare.cpp

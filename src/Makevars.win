@@ -1,3 +1,5 @@
+CXX_STD = CXX11
+
 VERSION = 2.7.4
 RWINLIB = ../windows/harfbuzz-${VERSION}
 

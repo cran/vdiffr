@@ -1,6 +1,6 @@
 Package: vdiffr
 Title: Visual Regression Testing and Graphical Diffing
-Version: 1.0.6
+Version: 1.0.7
 Authors@R: c(
     person("Lionel", "Henry", , "lionel@posit.co", c("cre", "aut")),
     person("Thomas Lin", "Pedersen", , "thomas.pedersen@posit.co", 
@@ -28,10 +28,10 @@ LinkingTo: cpp11
 RoxygenNote: 7.1.2
 URL: https://vdiffr.r-lib.org/, https://github.com/r-lib/vdiffr
 BugReports: https://github.com/r-lib/vdiffr/issues
-SystemRequirements: libpng
+SystemRequirements: C++11, libpng
 Config/Needs/website: tidyverse/tidytemplate
 NeedsCompilation: yes
-Packaged: 2023-08-25 08:24:07 UTC; lionel
+Packaged: 2023-09-21 14:48:37 UTC; lionel
 Author: Lionel Henry [cre, aut],
   Thomas Lin Pedersen [aut] (<https://orcid.org/0000-0002-5147-4711>),
   Posit Software, PBC [cph, fnd],
@@ -44,4 +44,4 @@ Author: Lionel Henry [cre, aut],
   Håkon Malmedal [ctb] (svglite: Opacity code)
 Maintainer: Lionel Henry <lionel@posit.co>
 Repository: CRAN
-Date/Publication: 2023-08-25 10:40:02 UTC
+Date/Publication: 2023-09-22 07:20:02 UTC
